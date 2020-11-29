@@ -8,7 +8,6 @@ exports.bike_get_all = (req, res, next) => {
     .then(docs => {
       const response = {
         count: docs.length,
-        d1: docs,
         bikes: docs.map(doc => {
           return {
             _id: doc._id,
@@ -30,8 +29,7 @@ exports.bike_get_all = (req, res, next) => {
 };
 
 exports.bike_create_bike = async (req, res, next) => {
-  console.log(req.body);
-  const bike =   new  Bike ({
+  const bike = new Bike ({
     _id: mongoose.Types.ObjectId(),
     name:  req.body.name,
     type: req.body.type,
@@ -41,28 +39,8 @@ exports.bike_create_bike = async (req, res, next) => {
    bike
     .save()
     .then(result => {
-      console.log(result);
       res.status(201).json({
         message: "Created bike successfully",
-      });
-    })
-    .catch(err => {
-      console.log(err);
-      res.status(500).json({
-        error: err
-      });
-    });
-};
-
-exports.bike_update_bike = async (req, res, next) => {
-  const id = req.body.bikeId;
-  const isRent = req.body.isRent;
-  console.log(req.body)
- await  Bike.update({ _id: id }, { isRent: isRent },{strict: false, new: true})
-    .exec()
-    .then(result => {
-      res.status(200).json({
-        message: "Bike updated",
       });
     })
     .catch(err => {

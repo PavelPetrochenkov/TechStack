@@ -5,6 +5,7 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 
 const bikeRoutes = require("./api/routes/bike");
+const userRoutes = require("./api/routes/user");
 
 mongoose.connect('mongodb+srv://new-user-1:R6ZY9R1qQmtE2200@cluster0.t6osv.mongodb.net/BikeRentDB?retryWrites=true&w=majority' ,{
     useMongoClient:true
@@ -32,6 +33,7 @@ app.use((req, res, next) => {
 });
 
 app.use("/bikes", bikeRoutes);
+app.use("/user", userRoutes);
 
 app.use((req, res, next) => {
   const error = new Error("Not found");
