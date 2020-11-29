@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const userSchema = mongoose.Schema({
+const bikeSchema = mongoose.Schema({
     _id: mongoose.Schema.Types.ObjectId,
     name: { type: String, required: true },
     type: {type: String, required: false },
@@ -8,4 +8,4 @@ const userSchema = mongoose.Schema({
     isRent: {type: Boolean, required: false},
 });
 
-module.exports = mongoose.model('User', userSchema);
+module.exports = mongoose.model('Bike', bikeSchema);
