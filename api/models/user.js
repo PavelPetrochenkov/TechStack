@@ -10,7 +10,7 @@ const userSchema = mongoose.Schema({
         }],
         wasRentedBike:[{
             idBike: {type: mongoose.Schema.Types.ObjectId, ref: 'Bike', required: false },
-            usedTime : {type:Date,required:false},
+            usedTime : {type:Number,required:false},
             cost: {type: Number, required:false},
             isPaid: {type:Boolean, required:false}
         }]

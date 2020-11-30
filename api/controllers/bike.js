@@ -28,12 +28,13 @@ exports.bike_get_all = (req, res, next) => {
     });
 };
 
-exports.bike_create_bike = async (req, res, next) => {
+exports.bike_create_bike = (req, res, next) => {
+  price = Number(req.body.price).toFixed(2)
   const bike = new Bike ({
     _id: mongoose.Types.ObjectId(),
     name:  req.body.name,
     type: req.body.type,
-    price:  req.body.price,
+    price:  price,
     isRent: false,
   });
    bike
@@ -53,7 +54,7 @@ exports.bike_create_bike = async (req, res, next) => {
 
 exports.bike_delete_bike = (req, res, next) => {
   const id = req.body.bikeId;
-  Bike.remove({ _id: id })
+  Bike.deleteOne({ _id: id })
     .exec()
     .then(result => {
       res.status(200).json({
